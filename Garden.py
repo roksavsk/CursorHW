@@ -149,6 +149,9 @@ class Tomato(Vegetables):
     def print_state(self):
         print(f'{self.vegetable_type} {self.index} is {self.state}')
 
+    def __repr__(self):
+        return f'{self.vegetable_type} {self.index} is {self.state}'
+
 
 class TomatoBush:
     def __init__(self, num):
@@ -169,7 +172,7 @@ class TomatoBush:
     def provide_harvest(self):
         self.tomatoes = []
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self):
         return self.tomatoes
 
 
@@ -196,6 +199,9 @@ class Apple(Fruit):
     def print_state(self):
         print(f'{self.fruits_type} {self.index} is {self.state}')
 
+    def __repr__(self):
+        return f'{self.fruits_type} {self.index} is {self.state}'
+
 
 class AppleTree:
     def __init__(self, num):
@@ -216,7 +222,7 @@ class AppleTree:
     def provide_harvest(self):
         self.apples = []
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self):
         return self.apples
 
 
@@ -251,6 +257,10 @@ class StarGardener(Gardener):
                 if plant.state == 3:
                     return True
                 return False
+
+    def __repr__(self):
+        return f'{self.name}'
+
 # Homework:
 
 
@@ -271,6 +281,9 @@ class Vermin(Pests):
             else:
                 print('There is nothing left to eat')
 
+    def __repr__(self):
+        return f'{self.pests_type}  is {self.quantity}'
+
 
 if __name__ == '__main__':
     # Creating list of instances for vegetables and fruits, pests and gardener
@@ -282,6 +295,57 @@ if __name__ == '__main__':
     garden = Garden(vegetables=tomato_bush.tomatoes, fruits=apple_tree.apples, pests=pests, gardener=tom)
     garden.show_the_garden()
     state = tom.check_states()
+    if not state:
+        tom.handling()
     for i in range(3):
         tom.handling()
     tom.harvest()
+
+
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# All ok
+# The garden has such vegetables: [Red_tomato 0 is 0, Red_tomato 1 is 0, Red_tomato 2 is 0]
+# Also garden has such fruits: [Golden 0 is 0, Golden 1 is 0]
+# And such pests: worm  is 10
+# The maintainer og the garden is Tom
+# Gardener is working...
+# Red_tomato 0 is 1
+# Red_tomato 1 is 1
+# Red_tomato 2 is 1
+# Golden 0 is 1
+# Golden 1 is 1
+# Gardener is finished
+# Gardener is working...
+# Red_tomato 0 is 2
+# Red_tomato 1 is 2
+# Red_tomato 2 is 2
+# Golden 0 is 2
+# Golden 1 is 2
+# Gardener is finished
+# Gardener is working...
+# Red_tomato 0 is 3
+# Red_tomato 1 is 3
+# Red_tomato 2 is 3
+# Golden 0 is 3
+# Golden 1 is 3
+# Gardener is finished
+# Gardener is working...
+# Red_tomato 0 is 3
+# Red_tomato 1 is 3
+# Red_tomato 2 is 3
+# Golden 0 is 3
+# Golden 1 is 3
+# Gardener is finished
+# Gardener is harvesting...
+# Harvesting is finished.
+# Harvesting is finished.
+#
+# Process finished with exit code 0

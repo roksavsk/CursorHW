@@ -8,9 +8,11 @@ with open("task1.txt", "r") as file:
         content[i + 1] = content[i + 1].replace("\n", "")
         dictionary.update({content[i]: content[i + 1]})
     print(dictionary)
+
 #Task 1.2
-    del content[0:len(content):2]
-    print(content)
+    with open('task1.2.txt', 'w') as file:
+        for item in dictionary.values():
+            file.write(f'{item} ')
 
 #Task 2
 import pickle

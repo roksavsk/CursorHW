@@ -31,8 +31,8 @@ class Predator(Animal):
         if prey.id == self.id:
             print("No prey found, predator left without dinner")
         else:
-            print(f"{__class__.__name__} {self.id} with {self.current_power} power and {self.speed} speed "
-                  f"starts hunting for prey {prey.__class__.__name__} {prey.id} with {prey.current_power} power and {prey.speed} speed")
+            print(f"{__class__.__name__} with {self.current_power} power and {self.speed} speed "
+                  f"starts hunting for prey {prey.__class__.__name__} with {prey.current_power} power and {prey.speed} speed")
             if self.speed > prey.speed:
                 print("Predator caught the prey")
                 if self.current_power > prey.current_power:
@@ -63,36 +63,36 @@ def power_recovery(animal: AnyAnimal):
         animal.current_power = animal.max_power
     else:
         animal.current_power = round(animal.current_power + animal.max_power * 0.5, 1)
-    print(f"{animal.__class__.__name__} {animal.id} ate and recovered power to {animal.current_power}")
+    print(f"{animal.__class__.__name__} ate and recovered power to {animal.current_power}")
 
 
 def won_battle(predator: AnyAnimal, herbivorous: AnyAnimal):
     if herbivorous.current_power - predator.current_power <= 0:
         forest.remove_animal(herbivorous)
-        print(f"{herbivorous.__class__.__name__} {herbivorous.id} died in a battle")
+        print(f"{herbivorous.__class__.__name__} died in a battle")
     else:
         herbivorous.current_power -= predator.current_power
-        print(f"{herbivorous.__class__.__name__} {herbivorous.id} survived with {herbivorous.current_power}")
+        print(f"{herbivorous.__class__.__name__} survived with {herbivorous.current_power}")
 
 
 def lost_battle(animal: AnyAnimal):
     if animal.current_power - animal.max_power * 0.3 <= 0:
         forest.remove_animal(animal)
-        print(f"{animal.__class__.__name__} {animal.id} died in a battle")
+        print(f"{animal.__class__.__name__} died in a battle")
 
     else:
         animal.current_power = round(animal.current_power - animal.max_power * 0.3, 1)
-        print(f"{animal.__class__.__name__} {animal.id} lost battle with {animal.current_power} power left")
+        print(f"{animal.__class__.__name__} lost battle with {animal.current_power} power left")
 
 
 def failed_chase(animal: AnyAnimal):
     if animal.current_power - animal.max_power * 0.3 <= 0:
         forest.remove_animal(animal)
-        print(f"{animal.__class__.__name__} {animal.id} died in a battle")
+        print(f"{animal.__class__.__name__} died in a battle")
 
     else:
         animal.current_power = round(animal.current_power - animal.max_power * 0.3, 1)
-        print(f"{animal.__class__.__name__} {animal.id} has {animal.current_power} power left after failed chase")
+        print(f"{animal.__class__.__name__} has {animal.current_power} power left after failed chase")
 
 
 AnyAnimal: Any[Herbivorous, Predator]
@@ -108,7 +108,7 @@ class Forest:
         self.animals.update({animal.id: animal})
 
     def remove_animal(self, animal: AnyAnimal):
-        print(f"{animal.id} animal removed from the forest")
+        print(f"{animal.__class__.__name__} removed from the forest")
         self.animals.pop(animal.id)
 
     def any_predator_left(self):
@@ -119,7 +119,7 @@ class Forest:
                     print(f"There's no predators in the forest")
                     return False
                 return True
-        print(f"Only {x.__class__.__name__} predators live in the forest")
+        print(f"Only {x.__class__.__name__} live in the forest")
         return False
 
 

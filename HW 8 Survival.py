@@ -115,12 +115,9 @@ class Forest:
         for x in list(self.animals.values()):
             if x.__class__.__name__ == "Predator":
                 print(f"{x.__class__.__name__} is in the forest")
-                if len(list(self.animals.values())) == 0:
-                    print(f"There's no predators in the forest")
-                    return False
                 return True
-        print(f"Only {x.__class__.__name__} live in the forest")
-        return False
+            print(f"Only {x.__class__.__name__} live in the forest")
+            return False
 
 
 def animal_generator():

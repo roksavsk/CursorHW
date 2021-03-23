@@ -32,7 +32,7 @@ class Predator(Animal):
                 print("Predator caught the prey")
                 if self.current_power > prey.current_power:
                     print("Predator won and eats the prey")
-                    won_battle(self, prey)
+                    won_battle(prey)
                     power_recovery(self)
 
                 else:
@@ -61,7 +61,7 @@ def power_recovery(animal: AnyAnimal):
     print(f"{animal.__class__.__name__} ate and recovered power to {animal.current_power}")
 
 
-def won_battle(predator: AnyAnimal, herbivorous: AnyAnimal):
+def won_battle(herbivorous: AnyAnimal):
         forest.remove_animal(herbivorous)
         print(f"{herbivorous.__class__.__name__} died in a battle")
 

@@ -1,13 +1,8 @@
 from __future__ import annotations
-
 from typing import Dict, Any
-
 from abc import ABC, abstractmethod
-
 import random
-
 import uuid
-
 import time
 
 
@@ -67,12 +62,9 @@ def power_recovery(animal: AnyAnimal):
 
 
 def won_battle(predator: AnyAnimal, herbivorous: AnyAnimal):
-    if herbivorous.current_power - predator.current_power <= 0:
         forest.remove_animal(herbivorous)
         print(f"{herbivorous.__class__.__name__} died in a battle")
-    else:
-        herbivorous.current_power -= predator.current_power
-        print(f"{herbivorous.__class__.__name__} survived with {herbivorous.current_power}")
+
 
 
 def lost_battle(animal: AnyAnimal):
@@ -116,8 +108,20 @@ class Forest:
             if x.__class__.__name__ == "Predator":
                 print(f"{x.__class__.__name__} is in the forest")
                 return True
-            print(f"Only {x.__class__.__name__} live in the forest")
-            return False
+        print(f"Only {x.__class__.__name__} live in the forest")
+        return False
+
+    def __iter__(self):
+        self.num = 0
+        self.animal_item = list(self.animals.values())
+        return self
+
+    def __next__(self):
+        self.num += 1
+        if self.num <= len(self.animal_item):
+            return self.animal_item[self.num - 1]
+        else:
+            raise StopIteration
 
 
 def animal_generator():
@@ -142,5 +146,4 @@ if __name__ == "__main__":
         if not forest.any_predator_left():
             break
         random.choice(list(forest.animals.values())).eat(forest)
-        print([{x.__class__.__name__: x.__dict__} for x in list(forest.animals.values())])
         time.sleep(1)

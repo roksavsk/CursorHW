@@ -1,0 +1,17 @@
+2021-03-24 15:52:33,666 - root - INFO - Returns sum of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:52:41,449 - root - INFO - Returns subtraction of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:53:31,830 - root - INFO - Returns multiplication of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:53:41,236 - root - INFO - Returns division of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:53:41,236 - root - ERROR - ZeroDivisionError - D:\This is mine\Cursor\HW 9 task 1.py
+Traceback (most recent call last):
+  File "D:\This is mine\Cursor\HW 9 task 1.py", line 72, in division
+    return f'Result: {num1} / {num2} = {num1 / num2}'
+ZeroDivisionError: division by zero
+2021-03-24 15:53:49,391 - root - INFO - Returns division of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:54:11,519 - root - INFO - Returns exponentiation of two numbers - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:54:49,647 - root - INFO - Returns root extraction from number - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:55:10,113 - root - WARNING - Wrong operation - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:55:13,756 - root - INFO - End calculation - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:56:56,675 - root - INFO - Returns root extraction from number - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:57:15,323 - root - INFO - Returns percentage of number - D:\This is mine\Cursor\HW 9 task 1.py
+2021-03-24 15:58:59,024 - root - INFO - End calculation - D:\This is mine\Cursor\HW 9 task 1.py

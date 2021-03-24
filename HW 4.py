@@ -16,10 +16,8 @@ vehicle.vehicle_attributes()
 
 class Bus(Vehicle):
     def __init__(self, max_speed, mileage, seating_capacity):
+        super(Bus, self).__init__(max_speed, mileage)
         self.seating_capacity = seating_capacity
-        self.max_speed = max_speed
-        self.mileage = mileage
-        super().__init__(max_speed, mileage)
 
     def seating(self):
         print(f'Vehicle seating capacity is {self.seating_capacity}.')
@@ -58,12 +56,8 @@ school.school_attributes()
 
 class SchoolBus(School, Bus):
     def __init__(self, get_school_id, number_of_students, max_speed, mileage, seating_capacity, bus_school_color):
-        super().__init__(get_school_id, number_of_students)
-        self.get_school_id = get_school_id
-        self.number_of_students = number_of_students
-        self.max_speed = max_speed
-        self.mileage = mileage
-        self.seating_capacity = seating_capacity
+        School.__init__(self, get_school_id, number_of_students)
+        Bus.__init__(self, max_speed, mileage, seating_capacity)
         self.bus_school_color = bus_school_color
 
     def bus_color(self):

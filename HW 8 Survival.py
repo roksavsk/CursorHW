@@ -66,7 +66,6 @@ def won_battle(herbivorous: AnyAnimal):
         print(f"{herbivorous.__class__.__name__} died in a battle")
 
 
-
 def lost_battle(animal: AnyAnimal):
     if animal.current_power - animal.max_power * 0.3 <= 0:
         forest.remove_animal(animal)

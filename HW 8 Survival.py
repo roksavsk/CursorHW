@@ -113,13 +113,12 @@ class Forest:
 
     def __iter__(self):
         self.num = 0
-        self.animal_item = list(self.animals.values())
         return self
 
     def __next__(self):
         self.num += 1
-        if self.num <= len(self.animal_item):
-            return self.animal_item[self.num - 1]
+        if self.num <= len(self.animals):
+            return self.animals[self.num - 1]
         else:
             raise StopIteration
 

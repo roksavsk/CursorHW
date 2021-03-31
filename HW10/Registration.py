@@ -106,5 +106,3 @@ class Registration:
 
 user = Registration()
 user.register("Jacob", "jacob@gmail.com", "123qwe")
-user.login_in("jacob@gmail.com", "123qwe")
-

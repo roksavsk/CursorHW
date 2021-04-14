@@ -62,14 +62,16 @@ print(multiply(2, 3, 4, 5, 6))
 
 def logged(func):
     @wraps(func)
-    def log(*args, **kwargs):
+    def log(*args):
         """
         Logging
         :param args:
         :param kwargs:
         :return:
         """
-        return func(*args, **kwargs)
+        print(f"Called {func.__name__}{args}")
+        print(f"Return {func(*args)}")
+        return func(*args)
     return log
 
 
@@ -95,7 +97,7 @@ def type_check(correct_type):
         @wraps(func)
         def inner(a):
             if isinstance(a, correct_type):
-                func(a)
+                return func(a)
             else:
                 print(f"Wrong Type: {type(a).__name__}")
         return inner

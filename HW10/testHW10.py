@@ -5,13 +5,12 @@ from HW10 import RobotVacuumCleaner
 
 class TestRobotVacuumCleaner(unittest.TestCase):
 
-    def setUp(self) -> None:
+        
+    def test_init(self):
         self.robot = RobotVacuumCleaner(100, 0, 100)
         self.robot1 = RobotVacuumCleaner("100", 0, 25)
         self.robot2 = RobotVacuumCleaner(-20, 75, 0)
         self.robots = [self.robot, self.robot1, self.robot2]
-
-    def test_init(self):
         with self.assertRaises(ValueError):
             RobotVacuumCleaner("grr", 15, 15)
 

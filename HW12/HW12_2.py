@@ -24,14 +24,24 @@ args = parser.parse_args()
 
 count = 0
 average_salary = 0
-with open(args.source_file_path, encoding="utf8", newline="") as file:
-    reader = csv.DictReader(file, delimiter=",")
+with open(args.source_file_path, encoding='utf-8', newline='') as csv_file:
+    reader = csv.DictReader(csv_file, delimiter=',')
     for row in reader:
-        if (float(args.end_salary) > float(row["Зарплата.в.месяц"]) > float(args.start_salary)
-                and row["Должность"] == args.position
-                and row["Возраст"] == args.age
-                and row["Язык.программирования"] == args.language):
-            count += 1
-            average_salary += float(row["Зарплата.в.месяц"])
+        if args.start_salary is not None and float(row['Зарплата.в.месяц']) < float(args.start_salary):
+            continue
+        if args.end_salary is not None and float(row['Зарплата.в.месяц']) > float(args.end_salary):
+            continue
+        if args.position is not None and row['Должность'] != args.position:
+            continue
+        if args.age is not None and row['Возраст'] != args.age:
+            continue
+        if args.language is not None and row['Язык.программирования'] != args.language:
+            continue
+        count += 1
+        average_salary += float(row['Зарплата.в.месяц'])
 
-print(f"Average salary: {average_salary/count}")
+        count += 1
+        average_salary += float(row['Зарплата.в.месяц'])
+
+
+print(f'Average salary: {average_salary/count}')

@@ -32,6 +32,10 @@ class PasswordError(Exception):
     pass
 
 
+class PasswordLengthError(Exception):
+    pass
+
+
 class UserAlreadyRegistered(Exception):
     pass
 
@@ -71,6 +75,9 @@ class Registration:
         if self.check_password(password) is False:
             raise PasswordError("Invalid password")
 
+        if self.check_length_password(password) is False:
+            raise PasswordLengthError("Incorrect password length")
+
         else:
             self.user_database.update({email: password})
         print(self.user_database)
@@ -88,11 +95,20 @@ class Registration:
                 return False
 
     def check_item_email(self, email):
-        for i in email:
-            if i in self.invalid_symbols:
-                return False
+        count = 0
+        count1 = 0
+        for el in email:
+            if el == '@' or el == '.':
+                count += 1
+            if el in self.invalid_symbols:
+                count1 += 1
+        if count == 2:
+            if count1 == 0:
+                return True
+        return False
 
-    def check_length_email(self, email):
+    @staticmethod
+    def check_length_email(email):
         if 12 <= len(email) <= 30:
             return True
         else:
@@ -103,6 +119,14 @@ class Registration:
             if i in self.invalid_symbols:
                 return False
 
+    @staticmethod
+    def check_length_password(password):
+        if 8 <= len(password) <= 30:
+            return True
+        else:
+            return False
+
 
 user = Registration()
-user.register("Jacob", "jacob@gmail.com", "123qwe")
+user.register("Jacob", "jacob@gmail.com", "123qwerty")
+

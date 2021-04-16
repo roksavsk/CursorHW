@@ -84,7 +84,7 @@ class Registration:
         return 200
 
     def login_in(self, email: str, password: str):
-        if email in self.user_database and password in self.user_database.values():
+        if email in self.user_database and password == self.user_database[email]:
             return self.user_token
         else:
             raise ErrorLogIn('Invalid login or password')

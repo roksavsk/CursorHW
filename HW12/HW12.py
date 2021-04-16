@@ -31,43 +31,24 @@ parser.add_argument("--destination_path", required=False, default="", help="Dest
 parser.add_argument("--destination_filename", required=False, default="2020_june_mini.csv", help="Destination filename")
 args = parser.parse_args()
 
-if args.sex is None:
-    args.sex = ""
-if args.city is None:
-    args.city = ""
-if args.position is None:
-    args.position = ""
-if args.age is None:
-    args.age = ""
+i = 0
+path_to_open = args.path_to_source_files
+path_to_create = f'{args.destination_path}/{args.destination_filename}'
+with open(path_to_open, 'r', encoding="utf8") as file:
+    with open(path_to_create, 'w', encoding="utf8") as new_file:
+        reader = csv.reader(file)
+        for row in reader:
+            if i == 0:
+                to_write = str(row)[1:len(str(row)) - 1].replace("'", "")
+                new_file.write(f"{to_write}\n")
+                i = 1
+                continue
+            if args.age is None or args.age == row[9]:
+                if args.city is None or args.city == row[1]:
+                    if args.position is None or args.position == row[4]:
+                        if args.sex is None or args.sex == row[10]:
+                            if args.exp == row[5]:
+                                if args.current_job_exp == row[6]:
+                                    to_write = str(row)[1:len(str(row)) - 1].replace("'", "")
+                                    new_file.write(f"{to_write}\n")
 
-file_len = 0
-open_path = args.path_to_source_files
-with open(open_path, "r", encoding="utf8") as file:
-    reader = csv.reader(file)
-    for row in reader:
-        if file_len == 0:
-            header = row
-        file_len += 1
-new_el = [file_len, args.city, "", "", args.position, args.exp, args.current_job_exp, "", "", args.age, args.sex, "",
-          "", "", "", "", "", ""]
-
-new_path = args.destination_path
-with open(new_path, "a", encoding="utf8") as file:
-    writer = csv.writer(file)
-    if args.destination_filename != "2020_june_mini.csv":
-        writer.writerow(header)
-        new_el[0] = 2
-    writer.writerow(new_el)
-
-
-
-# 2. Create a script with arguments:
-#
-# source_file_path; required: true;
-# start_salary; required: false; help: starting point of salary;
-# end_salary; required: false; help: the max point of salary;
-# position; required: false; help: position role
-# age; required: false; help: Age of person
-# language; required: false; help; Programming language
-#
-# Based on this info generate a new report of average salary.

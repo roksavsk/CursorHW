@@ -121,12 +121,22 @@ class Registration:
 
     @staticmethod
     def check_length_password(password):
-        if 8 <= len(password) <= 30:
+        count = 0
+        count1 = 0
+        count2 = 0
+        if 8 <= len(password) <= 20:
+            for el in password:
+                if el.isdigit() is True:
+                    count += 1
+                if el.isalpha() is True:
+                    count1 += 1
+                if el.isupper() is True:
+                    count2 += 1
+        if count > 1 and count1 > 1 and count2 >= 1:
             return True
-        else:
-            return False
+        return False
 
 
 user = Registration()
-user.register("Jacob", "jacob@gmail.com", "123qwerty")
+user.register("Jacob", "jacob@gmail.com", "123Qwerty")
 
